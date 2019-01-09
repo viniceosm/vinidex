@@ -35,22 +35,31 @@ class Vinidex {
 	}
 
 	add(nameObjectStore, valueAdd) {
-		let transaction = this.trans([nameObjectStore]);
+		let self = this;
+		return new Promise(function (resolve, reject) {
+			let transaction = self.trans([nameObjectStore]);
 
-		transaction.oncomplete = function (event) {
-			console.log("Adicionado com Sucesso");
-		};
+			transaction.oncomplete = function (event) {
+				console.log("Adicionado com Sucesso");
+				resolve();
+			};
 
-		transaction.onerror = function (event) {
-			console.log("Erro ao adicionar", event);
-		};
+			transaction.onerror = function (event) {
+				console.log("Erro ao adicionar", event);
+				reject();
+			};
 
-		let objectStore = transaction.objectStore(nameObjectStore);
-		objectStore.add(valueAdd);
+			let objectStore = transaction.objectStore(nameObjectStore);
+			objectStore.add(valueAdd);
+		});
 	}
 
 	delete(nameObjectStore, codigo) {
-		this.trans([nameObjectStore]).objectStore(nameObjectStore).delete(codigo);
+		let self = this;
+		return new Promise(function (resolve, reject) {
+			self.trans([nameObjectStore]).objectStore(nameObjectStore).delete(codigo);
+			resolve();
+		});
 	}
 
 	select(nameObjectStore, codigo) {
@@ -62,26 +71,29 @@ class Vinidex {
 			};
 		});
 	}
+
+	alter(nameObjectStore, codigo, atributos) {
+		let self = this;
+
+		let transaction = self.trans([nameObjectStore]);
+		let objectStore = transaction.objectStore(nameObjectStore);
+		let request = objectStore.get(codigo);
+
+		return new Promise(function (resolve, reject) {
+			request.onsuccess = function(event) {
+				let atributosKey = Object.keys(atributos);
+
+				for (let key of atributosKey) {
+					console.log("Atualizado : " + request.result[key] + " para " + atributos[key]);
+					request.result[key] = atributos[key];
+				}
+
+				objectStore.put(request.result);
+
+				resolve();
+			};
+		});
+	}
 }
 
 let vinidex = new Vinidex();
-
-(async function () {
-	//iniciando o banco
-	await vinidex.init('TonyMontana');
-
-	vinidex.delete('Estudantes', 2);
-	vinidex.delete('Estudantes', 3);
-
-	vinidex.add('Estudantes', { codigo: 1, nome: 'Vinicius' });
-	vinidex.add('Estudantes', { codigo: 2, nome: 'Flex' });
-
-	estudante = await vinidex.select('Estudantes', 1);
-	console.log(estudante.nome);
-
-	estudante = await vinidex.select('Estudantes', 2);
-	console.log(estudante.nome);
-
-	vinidex.delete('Estudantes', 2);
-	vinidex.delete('Estudantes', 3);
-})();

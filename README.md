@@ -1,6 +1,8 @@
 # vinidex
 
-classe para usar indexedDB
+Class to use indexedDB
+
+[1 example code](test-async.js)
 
 ## init(nameDb)
 

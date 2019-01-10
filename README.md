@@ -62,7 +62,7 @@ await Students.add({ id: 0, nome: 'Vinicius' });
 
 ## Methods that needs to pass objectStore name
 
-The alternative of this is use an object [model](##model)
+The alternative of this is use an object [model](#modelnameobjectstore)
 
 ### add(nameObjectStore, valueAdd)
 

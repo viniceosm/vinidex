@@ -7,8 +7,8 @@
 
   vinidex.schema(objectStores);
 
-  //iniciando o banco
-  await vinidex.init('vinidex');
+  //iniciando o banco [versão opcional (default = 1)]
+  await vinidex.init('vinidex', 6);
 
   vinidex.delete('Estudantes', 0);
   vinidex.delete('Estudantes', 1);
@@ -31,6 +31,8 @@
 
   estudante = await vinidex.select('Estudantes', 1);
   console.log('Estudantes[1]:', estudante.nome);
+
+  vinidex.delete('Carros', 0);
 
   await vinidex.add('Carros', { codigo: 0, nome: 'F-Pace' });
 })();

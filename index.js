@@ -1,5 +1,5 @@
 class Vinidex {
-  init(nameDb) {
+  init(nameDb, versionDb = 1) {
     let self = this;
 
     return new Promise(function (resolve, reject) {
@@ -8,7 +8,7 @@ class Vinidex {
         return;
       }
 
-      let request = window.indexedDB.open(nameDb, 6);
+      let request = window.indexedDB.open(nameDb, versionDb);
 
       request.onerror = function (event) {
         console.log("Erro ao abrir o banco de dados", event);

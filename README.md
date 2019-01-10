@@ -4,10 +4,14 @@ Class to use indexedDB
 
 [1 example code](test-async.js)
 
-## init(nameDb)
+## init(nameDb, versionDb = 1)
 
 ```javascript
-await vinidex.init('myNameIndexedDB');
+await vinidex.init('myNameIndexedDB'); // version will be 1
+```
+
+```javascript
+await vinidex.init('myNameIndexedDB', 7);
 ```
 
 ## add(nameObjectStore, valueAdd)

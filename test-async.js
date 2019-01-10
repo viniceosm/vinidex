@@ -1,4 +1,12 @@
 (async function () {
+  //Array de objectStore para onupgradeneeded
+  let objectStores = [
+    ['Estudantes', { keyPath: 'codigo' }],
+    ['Carros', { keyPath: 'codigo' }]
+  ];
+
+  vinidex.schema(objectStores);
+
   //iniciando o banco
   await vinidex.init('vinidex');
 
@@ -24,6 +32,5 @@
   estudante = await vinidex.select('Estudantes', 1);
   console.log('Estudantes[1]:', estudante.nome);
 
-  vinidex.delete('Estudantes', 1);
-  vinidex.delete('Estudantes', 2);
+  await vinidex.add('Carros', { codigo: 0, nome: 'F-Pace' });
 })();

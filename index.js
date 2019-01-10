@@ -8,7 +8,7 @@ class Vinidex {
         return;
       }
 
-      let request = window.indexedDB.open(nameDb, 3);
+      let request = window.indexedDB.open(nameDb, 6);
 
       request.onerror = function (event) {
         console.log("Erro ao abrir o banco de dados", event);
@@ -18,7 +18,16 @@ class Vinidex {
       request.onupgradeneeded = function (event) {
         console.log("Atualizando...");
         self.db = event.target.result;
-        let objectStore = self.db.createObjectStore("Estudantes", { keyPath: "codigo" });
+
+        for (let arrObjectStore of self.objectStores) {
+          try {
+            self.db.deleteObjectStore(arrObjectStore[0]);
+          } catch (e) {
+          }
+
+          let objectStore = self.db.createObjectStore(...arrObjectStore);
+        }
+
         resolve();
       };
 
@@ -28,6 +37,10 @@ class Vinidex {
         resolve();
       }
     });
+  }
+
+  schema(objectStores) {
+    this.objectStores = objectStores;
   }
 
   trans(arrObjectStore, mode = 'readwrite') {

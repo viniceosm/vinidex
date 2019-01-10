@@ -1,6 +1,6 @@
 # vinidex
 
-Class to use indexedDB
+Class to use easily indexedDB
 
 [1 example code](test-async.js)
 

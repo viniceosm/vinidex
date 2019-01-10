@@ -26,6 +26,40 @@ await vinidex.init('myNameIndexedDB'); // version will be 1
 await vinidex.init('myNameIndexedDB', 7);
 ```
 
+## model(nameObjectStore)
+
+method **model** return an object with methods CRUD for the objectStore, this is helps in writing, because you don't need use every time `vinidex`
+
+```javascript
+let Students = vinidex.model('Students');
+```
+
+### findById(id)
+
+```javascript
+let firstStudent = await Students.findById(0);
+```
+
+### alter(id, atributos)
+
+```javascript
+Students.alter(0, {
+  nome: 'Roberts'
+});
+```
+
+### delete(id)
+
+```javascript
+Students.delete(0);
+```
+
+### add(valueAdd)
+
+```javascript
+await Students.add({ id: 0, nome: 'Vinicius' });
+```
+
 ## add(nameObjectStore, valueAdd)
 
 ```javascript

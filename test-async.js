@@ -10,29 +10,32 @@
   //iniciando o banco [versão opcional (default = 1)]
   await vinidex.init('vinidex', 7);
 
-  vinidex.delete('Estudantes', 0);
-  vinidex.delete('Estudantes', 1);
+  let Estudantes = vinidex.model('Estudantes');
+  let Carros = vinidex.model('Carros');
 
-  await vinidex.add('Estudantes', { id: 0, nome: 'Vinicius' });
-  await vinidex.add('Estudantes', { id: 1, nome: 'Flex' });
+  Estudantes.delete(0);
+  Estudantes.delete(1);
 
-  estudante = await vinidex.select('Estudantes', 0);
+  await Estudantes.add({ id: 0, nome: 'Vinicius' });
+  await Estudantes.add({ id: 1, nome: 'Flex' });
+
+  estudante = await Estudantes.findById(0);
   console.log('Estudantes[0]:', estudante.nome);
 
-  estudante = await vinidex.select('Estudantes', 1);
+  estudante = await Estudantes.findById(1);
   console.log('Estudantes[1]:', estudante.nome);
 
-  vinidex.alter('Estudantes', 1, {
+  Estudantes.alter(1, {
     nome: 'Julia'
   });
 
-  estudante = await vinidex.select('Estudantes', 0);
+  estudante = await Estudantes.findById(0);
   console.log('Estudantes[0]:', estudante.nome);
 
-  estudante = await vinidex.select('Estudantes', 1);
+  estudante = await Estudantes.findById(1);
   console.log('Estudantes[1]:', estudante.nome);
 
-  vinidex.delete('Carros', 0);
+  Carros.delete(0);
 
-  await vinidex.add('Carros', { id: 0, nome: 'F-Pace' });
+  await Carros.add({ id: 0, nome: 'F-Pace' });
 })();

@@ -109,6 +109,25 @@ class Vinidex {
       };
     });
   }
+
+  model(nameObjectStore) {
+    let self = this;
+
+    return {
+      findById: function (id) {
+        return self.select(nameObjectStore, id);
+      },
+      add: function (valueAdd) {
+        return self.add(nameObjectStore, valueAdd);
+      },
+      delete: function (id) {
+        return self.delete(nameObjectStore, id);
+      },
+      alter: function (id, atributos) {
+        return self.alter(nameObjectStore, id, atributos);
+      }
+    }
+  }
 }
 
 let vinidex = new Vinidex();

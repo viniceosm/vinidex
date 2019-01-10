@@ -4,6 +4,18 @@ Class to use easily indexedDB
 
 [1 example code](test-async.js)
 
+## schema(objectStores)
+
+```javascript
+// Array de objectStore para onupgradeneeded
+let objectStores = [
+  ['Students', { keyPath: 'codigo' }],
+  ['Car', { keyPath: 'codigo' }]
+];
+
+vinidex.schema(objectStores);
+```
+
 ## init(nameDb, versionDb = 1)
 
 ```javascript

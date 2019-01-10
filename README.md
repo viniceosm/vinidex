@@ -60,25 +60,29 @@ Students.delete(0);
 await Students.add({ id: 0, nome: 'Vinicius' });
 ```
 
-## add(nameObjectStore, valueAdd)
+## Methods that needs to pass objectStore name
+
+The alternative of this is use an object [model](##model)
+
+### add(nameObjectStore, valueAdd)
 
 ```javascript
 await vinidex.add('Car', { id: 0, nome: 'Lancer' });
 ```
 
-## delete(nameObjectStore, id)
+### delete(nameObjectStore, id)
 
 ```javascript
 vinidex.delete('Car', 0);
 ```
 
-## select(nameObjectStore, id)
+### select(nameObjectStore, id)
 
 ```javascript
 let lancer = await vinidex.select('Car', 0);
 ```
 
-## alter(nameObjectStore, id, atributos)
+### alter(nameObjectStore, id, atributos)
 
 ```javascript
 vinidex.alter('Car', 0, {

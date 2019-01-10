@@ -9,8 +9,8 @@ Class to use easily indexedDB
 ```javascript
 // Array de objectStore para onupgradeneeded
 let objectStores = [
-  ['Students', { keyPath: 'codigo' }],
-  ['Car', { keyPath: 'codigo' }]
+  ['Students', { keyPath: 'id' }],
+  ['Car', { keyPath: 'id' }]
 ];
 
 vinidex.schema(objectStores);
@@ -29,22 +29,22 @@ await vinidex.init('myNameIndexedDB', 7);
 ## add(nameObjectStore, valueAdd)
 
 ```javascript
-await vinidex.add('Car', { codigo: 0, nome: 'Lancer' });
+await vinidex.add('Car', { id: 0, nome: 'Lancer' });
 ```
 
-## delete(nameObjectStore, codigo)
+## delete(nameObjectStore, id)
 
 ```javascript
 vinidex.delete('Car', 0);
 ```
 
-## select(nameObjectStore, codigo)
+## select(nameObjectStore, id)
 
 ```javascript
 let lancer = await vinidex.select('Car', 0);
 ```
 
-## alter(nameObjectStore, codigo, atributos)
+## alter(nameObjectStore, id, atributos)
 
 ```javascript
 vinidex.alter('Car', 0, {

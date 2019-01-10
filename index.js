@@ -69,30 +69,30 @@ class Vinidex {
     });
   }
 
-  delete(nameObjectStore, codigo) {
+  delete(nameObjectStore, id) {
     let self = this;
     return new Promise(function (resolve, reject) {
-      self.trans([nameObjectStore]).objectStore(nameObjectStore).delete(codigo);
+      self.trans([nameObjectStore]).objectStore(nameObjectStore).delete(id);
       resolve();
     });
   }
 
-  select(nameObjectStore, codigo) {
+  select(nameObjectStore, id) {
     let self = this;
     return new Promise(function (resolve, reject) {
-      let request = self.trans([nameObjectStore]).objectStore(nameObjectStore).get(codigo);
+      let request = self.trans([nameObjectStore]).objectStore(nameObjectStore).get(id);
       request.onsuccess = function (event) {
         resolve(request.result);
       };
     });
   }
 
-  alter(nameObjectStore, codigo, atributos) {
+  alter(nameObjectStore, id, atributos) {
     let self = this;
 
     let transaction = self.trans([nameObjectStore]);
     let objectStore = transaction.objectStore(nameObjectStore);
-    let request = objectStore.get(codigo);
+    let request = objectStore.get(id);
 
     return new Promise(function (resolve, reject) {
       request.onsuccess = function (event) {

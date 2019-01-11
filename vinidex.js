@@ -4,19 +4,18 @@ class Vinidex {
 
     return new Promise(function (resolve, reject) {
       if (!window.indexedDB) {
-        console.log("Seu navegador não suporta o recurso IndexedDB");
+        console.warn("Seu navegador não suporta o recurso IndexedDB");
         return;
       }
 
       let request = window.indexedDB.open(nameDb, versionDb);
 
       request.onerror = function (event) {
-        console.log("Erro ao abrir o banco de dados", event);
+        console.error("Erro ao abrir o banco de dados", event);
         reject();
       }
 
       request.onupgradeneeded = function (event) {
-        console.log("Atualizando...");
         self.db = event.target.result;
 
         for (let arrObjectStore of self.objectStores) {
@@ -32,7 +31,6 @@ class Vinidex {
       };
 
       request.onsuccess = function (event) {
-        console.log("Banco de dados aberto com sucesso.");
         self.db = event.target.result;
         resolve();
       }
@@ -55,13 +53,11 @@ class Vinidex {
       let transaction = self.trans([nameObjectStore]);
 
       transaction.oncomplete = function (event) {
-        console.log("Adicionado com Sucesso");
         resolve();
       };
 
       transaction.onerror = function (event) {
-        console.log("Erro ao adicionar", event);
-        reject();
+        reject(event);
       };
 
       let objectStore = transaction.objectStore(nameObjectStore);
@@ -99,7 +95,6 @@ class Vinidex {
         let atributosKey = Object.keys(atributos);
 
         for (let key of atributosKey) {
-          console.log("Atualizado : " + request.result[key] + " para " + atributos[key]);
           request.result[key] = atributos[key];
         }
 

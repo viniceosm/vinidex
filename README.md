@@ -28,7 +28,7 @@ await vinidex.init('myNameIndexedDB', 7);
 
 ## model(nameObjectStore)
 
-method **model** return an object with methods CRUD for the objectStore, this is helps in writing, because you don't need use every time `vinidex`
+Method **model** return an object with methods CRUD for the objectStore, this is helps in writing, because you don't need use every time `vinidex`
 
 ```javascript
 let Students = vinidex.model('Students');
@@ -38,6 +38,22 @@ let Students = vinidex.model('Students');
 
 ```javascript
 let firstStudent = await Students.findById(0);
+```
+
+### find(query = {})
+
+`query` is condition for search
+
+```javascript
+let izadora = await Students.find({ name: 'Izadora' });
+```
+
+Find all
+
+```javascript
+let allStudents = await Students.find(); // all students
+// or
+allStudents = await Students.find({}); // all students
 ```
 
 ### alter(id, atributos)
@@ -80,6 +96,14 @@ vinidex.delete('Car', 0);
 
 ```javascript
 let lancer = await vinidex.select('Car', 0);
+```
+
+### find(nameObjectStore, query = {})
+
+`query` is condition for search
+
+```javascript
+let lancer = await vinidex.find('Car', { name: 'Lancer' });
 ```
 
 ### alter(nameObjectStore, id, atributos)

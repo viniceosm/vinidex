@@ -112,6 +112,9 @@ class Vinidex {
       findById: function (id) {
         return self.select(nameObjectStore, id);
       },
+      find: function (query) {
+        return self.find(nameObjectStore, query);
+      },
       add: function (valueAdd) {
         return self.add(nameObjectStore, valueAdd);
       },
@@ -122,6 +125,39 @@ class Vinidex {
         return self.alter(nameObjectStore, id, atributos);
       }
     }
+  }
+
+  find(nameObjectStore, query = {}) {
+    let self = this;
+
+    if (JSON.stringify(query) == '{}') {
+      return self.findAll(nameObjectStore);
+    }
+
+    let transaction = self.trans([nameObjectStore], 'readonly');
+    let objectStore = transaction.objectStore(nameObjectStore);
+    let values = [];
+
+    return new Promise(function (resolve, reject) {
+      objectStore.openCursor().onsuccess = function (event) {
+        let cursor = event.target.result;
+
+        if (cursor) {
+          let canAddValue = true;
+
+          Object.keys(query).forEach(key => {
+            canAddValue = cursor.value[key] == query[key];
+          })
+
+          if (canAddValue === true) {
+            values.push(cursor.value);
+          }
+          cursor.continue();
+        } else {
+          resolve(values);
+        }
+      }
+    });
   }
 }
 

@@ -46,8 +46,19 @@ let firstStudent = await Students.findById(0);
 
 `query` is condition for search
 
+Note: Still only works operator equal
+
 ```javascript
 let izadora = await Students.find({ name: 'Izadora' });
+```
+
+Many condition
+
+```javascript
+let izadora = await Students.find({
+  name: 'Izadora',
+  age: 21
+});
 ```
 
 Find all

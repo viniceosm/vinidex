@@ -2,6 +2,8 @@
 
 Class to use easily indexedDB
 
+> IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs.
+
 [1 example code](test-async.js)
 
 ## schema(objectStores)

@@ -40,14 +40,16 @@
 
   await Carros.add({ id: 0, nome: 'F-Pace' });
 
+  print('<br>');
+
   let estudantes = await Estudantes.find({
     instuticao: 'PUC',
     idade: { $gte: 20, $lt: 100 },
   });
-  console.log('estudantes da PUC entre 20 e 99: ', estudantes);
+  print(`Estudantes da PUC entre 20 e 99: ${JSON.stringify(estudantes)}`);
 
   estudantes = await Estudantes.find({ idade: 21 });
-  console.log('estudantes com 21: ', estudantes);
+  print(`Estudantes com 21: ${JSON.stringify(estudantes)}`);
 
   function print(content) {
     document.querySelector('#res').innerHTML += `<div>${content}<div>`;

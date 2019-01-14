@@ -1,6 +1,6 @@
 # vinidex
 
-Class to use easily indexedDB
+Lib to use easily indexedDB
 
 > IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs.
 
@@ -14,7 +14,7 @@ The mechanism by which data is stored in the database.
 
 [1 example code](test-async.js)
 
-## Class Methods
+## Lib Methods
 
 ## schema(objectStores)
 

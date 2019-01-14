@@ -63,22 +63,13 @@ let firstStudent = await Students.findById(0);
 
 `query` is condition for search
 
-Note: Still only works operator equal
+#### Equal
 
 ```javascript
 let izadora = await Students.find({ name: 'Izadora' });
 ```
 
-Many condition
-
-```javascript
-let izadora = await Students.find({
-  name: 'Izadora',
-  age: 21
-});
-```
-
-Find all
+#### Find all
 
 ```javascript
 let allStudents = await Students.find(); // all students
@@ -86,11 +77,62 @@ let allStudents = await Students.find(); // all students
 allStudents = await Students.find({}); // all students
 ```
 
+#### $gt
+
+Greater than `>`
+
+```javascript
+let greaterThan20 = await Students.find({ age: { $gt: 20} });
+```
+
+#### $gte
+
+Greater than or equal to `>=`
+
+```javascript
+let gte21 = await Students.find({ age: { $gte: 21} });
+```
+
+#### $lt
+
+Less than `<`
+
+```javascript
+let lessThan24 = await Students.find({ age: { $lt: 24} });
+```
+
+#### $lte
+
+Less than or equal to `<=`
+
+```javascript
+let lte30 = await Students.find({ age: { $lte: 30} });
+```
+
+#### $ne
+
+Not equal `!==`
+
+```javascript
+let ne30 = await Students.find({ name: { $ne: 'Will'} });
+```
+
+#### Many condition
+
+`name == 'Izadora' && age >= 20 && age < 100`
+
+```javascript
+let izadora = await Students.find({
+  name: 'Izadora',
+  age: { $gte: 20, $lt: 100 },
+});
+```
+
 ### alter(id, atributos)
 
 ```javascript
 Students.alter(0, {
-  nome: 'Roberts'
+  name: 'Roberts'
 });
 ```
 
@@ -103,7 +145,7 @@ Students.delete(0);
 ### add(valueAdd)
 
 ```javascript
-await Students.add({ id: 0, nome: 'Vinicius' });
+await Students.add({ id: 0, name: 'Vinicius' });
 ```
 
 ## Methods that needs to pass objectStore name
@@ -113,7 +155,7 @@ The alternative of this is use an object [model](#modelnameobjectstore)
 ### add(nameObjectStore, valueAdd)
 
 ```javascript
-await vinidex.add('Car', { id: 0, nome: 'Lancer' });
+await vinidex.add('Car', { id: 0, name: 'Lancer' });
 ```
 
 ### delete(nameObjectStore, id)
@@ -140,6 +182,6 @@ let lancer = await vinidex.find('Car', { name: 'Lancer' });
 
 ```javascript
 vinidex.alter('Car', 0, {
-  nome: 'F-Pace'
+  name: 'F-Pace'
 });
 ```

@@ -146,7 +146,21 @@ class Vinidex {
           let canAddValue = true;
 
           Object.keys(query).forEach(key => {
-            canAddValue = cursor.value[key] == query[key];
+            if (Object.keys(query[key]).length > 0 && typeof query[key] === 'object') {
+              Object.keys(query[key]).forEach(operatorToUse => {
+                let operators = {
+                  $gt: '>',
+                  $gte: '>=',
+                  $lt: '<',
+                  $lte: '<=',
+                  $ne: '!=='
+                }
+
+                canAddValue = eval((cursor.value[key] + operators[operatorToUse] + query[key][operatorToUse]));
+              });
+            } else {
+              canAddValue = cursor.value[key] === query[key];
+            }
           })
 
           if (canAddValue === true) {

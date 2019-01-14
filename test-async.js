@@ -17,8 +17,8 @@
   Estudantes.delete(0);
   Estudantes.delete(1);
 
-  await Estudantes.add({ id: 0, nome: 'Vinicius' });
-  await Estudantes.add({ id: 1, nome: 'Flex', idade: 21 });
+  await Estudantes.add({ id: 0, nome: 'Vinicius', instuticao: 'PUC' });
+  await Estudantes.add({ id: 1, nome: 'Flex', idade: 21, instuticao: 'PUC' });
 
   estudante = await Estudantes.findById(0);
   print(`Estudantes[0]: ${estudante.nome}`);
@@ -40,10 +40,14 @@
 
   await Carros.add({ id: 0, nome: 'F-Pace' });
 
-  let estudantes = await Estudantes.find({ idade: 21 });
-  console.log('estudantes: ', estudantes);
+  let estudantes = await Estudantes.find({
+    instuticao: 'PUC',
+    idade: { $gte: 20, $lt: 100 },
+  });
+  console.log('estudantes da PUC entre 20 e 99: ', estudantes);
 
-
+  estudantes = await Estudantes.find({ idade: 21 });
+  console.log('estudantes com 21: ', estudantes);
 
   function print(content) {
     document.querySelector('#res').innerHTML += `<div>${content}<div>`;

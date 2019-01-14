@@ -4,9 +4,23 @@ Class to use easily indexedDB
 
 > IndexedDB is a low-level API for client-side storage of significant amounts of structured data, including files/blobs.
 
+## Nomenclatures of IndexedDB
+
+### Object store
+
+The mechanism by which data is stored in the database.
+
+## Examples
+
 [1 example code](test-async.js)
 
+## Class Methods
+
 ## schema(objectStores)
+
+This method creates object stores when database is upgraded, you need create object store before put value in.
+
+Call this method before opens database.
 
 ```javascript
 // Array de objectStore para onupgradeneeded
@@ -16,6 +30,9 @@ let objectStores = [
 ];
 
 vinidex.schema(objectStores);
+
+// after this you can open db
+await vinidex.init('myNameIndexedDB');
 ```
 
 ## init(nameDb, versionDb = 1)

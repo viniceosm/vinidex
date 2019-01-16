@@ -128,10 +128,10 @@ let izadora = await Students.find({
 });
 ```
 
-### alter(id, atributos)
+### updateById(id, atributos)
 
 ```javascript
-Students.alter(0, {
+Students.updateById(0, {
   name: 'Roberts'
 });
 ```
@@ -178,7 +178,7 @@ let lancer = await vinidex.select('Car', 0);
 let lancer = await vinidex.find('Car', { name: 'Lancer' });
 ```
 
-### alter(nameObjectStore, id, atributos)
+### updateById(nameObjectStore, id, atributos)
 
 ```javascript
 vinidex.alter('Car', 0, {

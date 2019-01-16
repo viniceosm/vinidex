@@ -83,7 +83,7 @@ class Vinidex {
     });
   }
 
-  alter(nameObjectStore, id, atributos) {
+  updateById(nameObjectStore, id, atributos) {
     let self = this;
 
     let transaction = self.trans([nameObjectStore]);
@@ -121,8 +121,8 @@ class Vinidex {
       delete: function (id) {
         return self.delete(nameObjectStore, id);
       },
-      alter: function (id, atributos) {
-        return self.alter(nameObjectStore, id, atributos);
+      updateById: function (id, atributos) {
+        return self.updateById(nameObjectStore, id, atributos);
       }
     }
   }

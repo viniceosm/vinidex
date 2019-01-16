@@ -16,7 +16,7 @@
   estudante = await Estudantes.findById(1);
   print(`Estudantes[1]: ${estudante.nome}`);
 
-  Estudantes.updateById(1, {
+  Estudantes.update({ nome: 'Flex' }, {
     nome: 'Julia',
     endereco: 'Vila Lenzi'
   });

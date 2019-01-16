@@ -136,6 +136,14 @@ Students.updateById(0, {
 });
 ```
 
+### update(query, atributos)
+
+```javascript
+Students.update({ name: 'Julia' }, {
+  name: 'Roberts'
+});
+```
+
 ### delete(id)
 
 ```javascript
@@ -181,7 +189,15 @@ let lancer = await vinidex.find('Car', { name: 'Lancer' });
 ### updateById(nameObjectStore, id, atributos)
 
 ```javascript
-vinidex.alter('Car', 0, {
+vinidex.updateById('Car', 0, {
+  name: 'F-Pace'
+});
+```
+
+#### update(nameObjectStore, query, atributos)
+
+```javascript
+vinidex.update('car', { name: 'Lancer' }, {
   name: 'F-Pace'
 });
 ```

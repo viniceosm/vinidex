@@ -105,6 +105,20 @@ class Vinidex {
     });
   }
 
+  update(nameObjectStore, query, atributos) {
+    let self = this;
+
+    return new Promise(async function (resolve, reject) {
+      let objectStoreFound = await self.find(nameObjectStore, query);
+
+      for (let obj of objectStoreFound) {
+        await self.updateById(nameObjectStore, obj.id, atributos);
+      }
+
+      resolve();
+    });
+  }
+
   model(nameObjectStore) {
     let self = this;
 
@@ -123,6 +137,9 @@ class Vinidex {
       },
       updateById: function (id, atributos) {
         return self.updateById(nameObjectStore, id, atributos);
+      },
+      update: function (query, atributos) {
+        return self.update(nameObjectStore, query, atributos);
       }
     }
   }

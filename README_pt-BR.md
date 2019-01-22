@@ -12,7 +12,7 @@ O mecanismo pelo qual os dados são armazenados no banco de dados.
 
 ## Exemplos
 
-[1 código exemplo](test-async.js)
+- 1 exemplo: [código JS](example/1-estudantes.js) / [página HTML](https://viniceosm.github.io/vinidex/example/1-estudantes.html)
 
 ## Metodos da lib
 

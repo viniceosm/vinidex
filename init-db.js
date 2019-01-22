@@ -9,5 +9,5 @@ async function initDb() {
 
   //iniciando o banco [versão opcional (default = 1)]
   await vinidex.init('vinidex', 7);
-  print(`Banco iniciado!`);
+  print.history(`Banco iniciado!`);
 }

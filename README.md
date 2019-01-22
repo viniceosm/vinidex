@@ -12,7 +12,7 @@ The mechanism by which data is stored in the database.
 
 ## Examples
 
-[1 example code](test-async.js)
+- 1 example: [code JS](example/1-estudantes.js) / [page HTML](https://viniceosm.github.io/vinidex/example/1-estudantes.html)
 
 ## Lib Methods
 

@@ -23,7 +23,9 @@ class Vinidex {
             self.db.deleteObjectStore(arrObjectStore[0]);
           } catch (e) {
           }
+        }
 
+        for (let arrObjectStore of self.objectStores) {
           let objectStore = self.db.createObjectStore(...arrObjectStore);
         }
 
@@ -32,6 +34,7 @@ class Vinidex {
 
       request.onsuccess = function (event) {
         self.db = event.target.result;
+
         resolve();
       }
     });
@@ -189,6 +192,10 @@ class Vinidex {
         }
       }
     });
+  }
+
+  getDb() {
+    return this.db;
   }
 }
 

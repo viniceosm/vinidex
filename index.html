@@ -6,12 +6,50 @@
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>vinidexDB</title>
 
-	<script src="util-view.js"></script>
 	<script src="vinidex.js"></script>
+	<script src="util-view.js"></script>
 	<script src="init-db.js"></script>
 	<script src="test-async.js"></script>
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One" rel="stylesheet">
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
-	<div class="box" id="res"></div>
+	<div class="box box-margin-10">
+		<div class="b-t">Criar</div>
+		<div class="b-c">
+			<div class="f-g">
+				<label for="nome-object-store">name object store</label><br>
+				<input type="text" id="nome-object-store" value="Estudantes">
+			</div>
+
+			<div class="f-g">
+				<label for="value-object-store">value object store</label><br>
+				<textarea type="text" id="value-object-store" rows="6">{
+	"id": 5,
+	"nome": "Hot",
+	"idade": 25,
+	"instuticao": "DV"
+}</textarea>
+			</div>
+
+			<div class="f-g">
+				<button id="btnCriarObjectStore">criar</button>
+			</div>
+		</div>
+	</div>
+
+	<div class="box box-margin-10">
+		<div class="b-t">Object Stores</div>
+		<div class="b-c" id="box-object-stores">
+		</div>
+	</div>
+
+
+	<div class="box box-margin-10" id="box-history">
+		<div class="b-t">History</div>
+		<div class="b-c" id="history"></div>
+	</div>
 </body>
 </html>
